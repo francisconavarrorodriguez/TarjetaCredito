@@ -1,0 +1,47 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="titulo mb-3">{{titulo}}
+            <div *ngIf="loading" class="spinner-border float-end" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </h5>
+        <form [formGroup]="form" (ngSubmit)="guardarTarjeta()">
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                    <i class="fa-solid fa-circle-user"
+                    [class.green-icon]="form.get('titular')?.valid"
+                    [class.red-icon]="form.get('titular')?.invalid && form.controls['titular'].touched == true"></i>
+                </span>
+                <input type="text" formControlName="titular" class="form-control" placeholder="Titular">
+            </div>
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text"><i [class.green-icon]="form.controls['numeroTarjeta'].status == 'VALID'"
+                    [class.red-icon]="form.controls['numeroTarjeta'].status == 'INVALID' && form.controls['numeroTarjeta'].touched == true" class="fa-solid fa-credit-card"></i>
+                </span>
+                <input type="text" formControlName="numeroTarjeta" maxlength="16" class="form-control" placeholder="Numero tarjeta">
+            </div>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text"><i [class.green-icon]="form.controls['fechaExpiracion'].status == 'VALID'"
+                            [class.red-icon]="form.controls['fechaExpiracion'].status == 'INVALID' && form.controls['fechaExpiracion'].touched == true" class="fa-solid fa-calendar-alt"></i>
+                        </span>
+                        <input type="text" formControlName="fechaExpiracion" maxlength="5" class="form-control" placeholder="MM/YY">
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text"><i [class.green-icon]="form.controls['cvv'].status == 'VALID'"
+                            [class.red-icon]="form.controls['cvv'].status == 'INVALID' && form.controls['cvv'].touched == true" class="fa-solid fa-key"></i>
+                        </span>
+                        <input type="password" formControlName="cvv" maxlength="3" class="form-control" placeholder="CVV">
+                    </div>
+                </div>
+            </div>
+            <div class="d-grid gap-2">
+                <button [disabled]="form.invalid" class="btn btn-primary btn-success btn-lg" type="submit"><i class="fa-solid fa-database"></i>
+                    &nbsp;Aceptar</button>
+            </div>
+        </form>
+    </div>
+</div>

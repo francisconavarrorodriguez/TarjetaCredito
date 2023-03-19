@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/tarjeta-credito",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
